@@ -9,18 +9,18 @@
 :root { 
   --header-h: 84px;
 
-  /* ✅ Velantra Brand Colors (from your provided gradient image) */
-  --primary: #53D2B7;        /* teal */
-  --primary-dark: #1FAE98;   /* deeper teal */
-  --accent: #4FD18F;         /* green */
-  --text: #0f172a;           /* dark slate */
-  --muted: #475569;          /* slate */
+  /* ✅ Velantra Brand Colors */
+  --primary: #6d28d9;     
+  --primary-dark: #4c1d95;
+  --accent: #22c55e;      
+  --text: #0f172a;        
+  --muted: #475569;       
   --card: #ffffff;
   --bg: #f8fafc;
   --shadow: rgba(0,0,0,0.10);
 }
 
-/* ✅ Modern Sans-Serif (Velantra-style) */
+/* ✅ Modern Sans-Serif */
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
@@ -37,17 +37,11 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  background: linear-gradient(90deg, #53D2B7, #4FD18F);
+  background: linear-gradient(90deg, #4c1d95, #6d28d9, #22c55e);
   box-shadow: 0 6px 20px rgba(0,0,0,0.18);
   padding: 12px 30px;
   z-index: 9999;
   overflow: visible;
-}
-
-.site-header a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .site-header a img {
@@ -55,7 +49,7 @@ body {
   height: auto;
   width: auto;
   max-height: 62px;
-  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.22));
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.25));
 }
 
 /* ✅ 3 fixed columns on desktop */
@@ -66,42 +60,41 @@ body {
   gap: 30px;
 }
 
-/* ✅ Cards/Sections */
 .section {
   background-color: var(--card);
   box-shadow: 0 6px 18px var(--shadow);
   border-radius: 16px;
   padding: 25px;
   text-align: center;
-  border: 1px solid rgba(83, 210, 183, 0.18);
+  border: 1px solid rgba(109,40,217,0.10);
 }
 
 .section h2 { 
-  color: var(--primary-dark); 
+  color: var(--primary); 
   margin-bottom: 15px; 
   letter-spacing: 0.2px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 ul { list-style-type: none; padding: 0; margin: 0; }
 
-/* ✅ Tiles */
+/* ✅ Modern tiles */
 .list-item {
-  background: linear-gradient(90deg, #53D2B7, #4FD18F);
+  background: linear-gradient(90deg, #4c1d95, #6d28d9);
   color: #fff;
   margin: 12px 0;
   padding: 12px 14px;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.25s ease;
-  border: 1px solid rgba(255,255,255,0.18);
-  font-weight: 650;
+  border: 1px solid rgba(255,255,255,0.12);
+  font-weight: 600;
 }
 
 .list-item:hover { 
   background: #ffffff; 
   color: var(--text); 
-  border-color: rgba(83, 210, 183, 0.55);
+  border-color: rgba(109,40,217,0.28);
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(0,0,0,0.10);
 }
@@ -120,24 +113,24 @@ ul { list-style-type: none; padding: 0; margin: 0; }
 
 .search-container input {
   padding: 10px 14px;
-  border: 1px solid rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.55);
   border-radius: 12px;
   font-size: 14px;
   width: 260px;
   transition: all 0.25s ease;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.16);
   color: #fff;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
 }
 
 .search-container input::placeholder {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.85);
 }
 
 .search-container input:focus {
   outline: none;
-  border-color: rgba(255,255,255,1);
-  box-shadow: 0 0 12px rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.95);
+  box-shadow: 0 0 10px rgba(255,255,255,0.25);
 }
 
 /* ✅ Responsive */
@@ -149,7 +142,7 @@ ul { list-style-type: none; padding: 0; margin: 0; }
   .site-header { flex-direction: column; align-items: stretch; }
   .search-container { order: 1; margin-bottom: 10px; }
   .site-header a { order: 2; align-self: center; }
-  .site-header a img { max-height: 54px; }
+  .site-header a img { max-height: 52px; }
   .container { 
     padding: calc(var(--header-h) + 16px) 20px 40px 20px; 
     grid-template-columns: 1fr; 
@@ -166,12 +159,17 @@ ul { list-style-type: none; padding: 0; margin: 0; }
     <input type="text" id="searchInput" placeholder="Search Velantra topics..." />
   </div>
 
-  <a href="#" onclick="return false;" aria-label="Velantra">
+  <a href="https://velantra.ai/" target="_blank" rel="noopener">
+    <!-- ✅ Logo from Velantra site (fallback to text if blocked) -->
     <img
-      src="https://i.postimg.cc/3w3RdVNT/Velantra-Logo.png"
-      alt="Velantra Logo"
+      src="https://velantra.ai/favicon.ico"
+      alt="Velantra"
       id="brandLogo"
+      onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';"
     />
+    <span id="logoText" style="display:none; color:white; font-weight:800; font-size:20px; letter-spacing:0.5px;">
+      Velantra
+    </span>
   </a>
 </header>
 
@@ -228,16 +226,6 @@ ul { list-style-type: none; padding: 0; margin: 0; }
   <p>• This is a regulatory requirement for US brokers and cannot be overridden by the system.</p>
 <p>Because of this rule, the Social Trader Tool (STT) will re-attempt the command every minute, but it will only execute once the existing position is closed or reversed.</p>">
         Error Code 10046
-      <li class="list-item" data-description="The trade didn’t open because the broker couldn’t provide a valid price at the exact moment the order was sent (Error 136: Off Quotes). This usually happens during fast market movement or low liquidity. The system will keep retrying every second, and the trade will only execute once a stable quote is available; otherwise, it may be skipped. This is not an issue with your account or the copier connection.<p><b><i>Email Response</i></b></p><p>The system successfully sent the order, however it was rejected by the broker due to Error Code 136 (Off Quotes). This means that at the moment the trade was placed, the broker could not provide a valid executable price—typically caused by rapid price movement, spread changes, or temporary liquidity conditions.</p>
-      <p> What to expect:</p>
-          <p>•The system will automatically retry the trade once every second.</p>
-          <p>•The trade will execute as soon as a valid quote becomes available and market conditions stabilize.</p>
-          <p>•If the broker continues rejecting quotes due to volatility, the trade may be skipped for that specific entry.</p>
-
-<p>Please note this does not indicate an issue with your account or the copier connection, and no funds were lost from this particular trade attempt.</p>
-
-<p>If you’d like, we can also review your execution settings (such as slippage tolerance and risk parameters) to reduce the likelihood of this occurring during high-volatility periods.</p>">
-        Error Code: 136 / Off quotes
       </li>
     </ul>
   </div>
@@ -246,16 +234,27 @@ ul { list-style-type: none; padding: 0; margin: 0; }
   <div class="section">
     <h2>Standard Operating Procedures (SOPs)</h2>
     <ul>
-      <li class="list-item" data-link="https://docs.google.com/document/d/1ksMvSix4IZhVyyE8UzLMc4L0HINxFkh3B8KXpMO99vE/edit?tab=t.af90p48y2t8c">Onboarding Process & SOP</li>
-      <li class="list-item" data-link="https://docs.google.com/document/d/1bjSvt-qcJOcpELEnHNSRmBt-lChtGgR8a5huRDpjU00/edit?tab=t.0">Handling Client Inquiries - Onboarding Responsibilities</li>
-      <li class="list-item" data-link="https://docs.google.com/document/d/1rKLjgj_bq0zh1b8bCQMlTlMaSfY85bcDuQ1_gZg_zeY/edit?usp=sharing">Onboarding to Sales Pass Off</li>
-      <li class="list-item" data-link="https://app.velantra.ai/dashboard/login">KeyMaker Login Screen</li>
-      <li class="list-item" data-link="https://www.loom.com/share/dbc6054304d54e1aac219441499fafba">How to Set Up Client on KeyMaker</li>
-      <li class="list-item" data-link="https://docs.google.com/document/d/15tWAlbdDhmegggCTRLQStXETTCfOmyTRQuW-kvatXUE/edit?tab=t.0">Product/System Descriptions</li>
-      <li class="list-item" data-link="https://drive.google.com/file/d/15E74VyH4DWV6R_nS_QzT7kVtojZxm_jY/view?usp=sharing">Alpha Performance Verification</li>
-      <li class="list-item" data-link="https://docs.google.com/document/d/1L4nZhvwGSE6VcUzFFWMEhylC6F_4c_ycxgZ7Y0qWh-g/edit?usp=sharing">Velantra White Papers</li>
-      <li class="list-item" data-link="https://docs.google.com/document/d/1UFOPshmZO31Vuts6A725hb_Om5lfbUbcHhWIQdOkkIg/edit?usp=sharing">Published Article on Velantra</li>
-      <li class="list-item" data-link="https://drive.google.com/drive/folders/1pM2uMRZGJFD4KaWm_M8n6hHDfhc-RauA?usp=drive_link">GNT Specific Documents</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1gfckFvNJEdNhNh2IN_q_e-O14aqS6cypy2RB2RTi0lo/edit?tab=t.0">Welcome Email</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1tcXTApfF6Hf9mM5VWOvQLj_xbVfAOcLVKTsQJfV5bow/edit?tab=t.cvjc8mqhx86j">Onboarding Details and Checklist</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1tcXTApfF6Hf9mM5VWOvQLj_xbVfAOcLVKTsQJfV5bow/edit?tab=t.bfreydw4gpsx">Funding Process</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1KayIkPvj-TDkrIWOeF09bKhVm2JSbR7Bs5kYRPYFC04/edit?tab=t.0">Monthly Maintenance (New Client)</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1KayIkPvj-TDkrIWOeF09bKhVm2JSbR7Bs5kYRPYFC04/edit?tab=t.uof2imalasx">Monthly Maintenance (Existing Client)</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1QcE1vpzgwRyNDNDSqtoOnj8VKlheGHGwa_569spq2LA/edit?tab=t.0">First Call Email Reminder</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1QcE1vpzgwRyNDNDSqtoOnj8VKlheGHGwa_569spq2LA/edit?tab=t.3pdfey6i1hbp">Text and Email Meeting Reminders</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1VAZFd0yuZNHarKPutYZTMfb91vFOEpIDemPXgMwMLIg/edit?tab=t.6sg5v8n9gk0">Unresponsive (Pending Onboarding)</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1VAZFd0yuZNHarKPutYZTMfb91vFOEpIDemPXgMwMLIg/edit?tab=t.yyzbawb9yf4t">Not Live - After 15 Days</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1ESSRJkGqMF88ZDW8YXztF9h8RrVNOslDOOBNdwUj72I/edit?tab=t.fl97k7mt9mm0">Email Summary</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1ESSRJkGqMF88ZDW8YXztF9h8RrVNOslDOOBNdwUj72I/edit?tab=t.bvjoqt4ieskg">GHL Notes</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1fGCvIxPcQzil9usQeXCyS06yJIWh92ORH4Zds_ztISM/edit?tab=t.f2vg3y21ixct">Keymaker Profile Creation</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1fGCvIxPcQzil9usQeXCyS06yJIWh92ORH4Zds_ztISM/edit?tab=t.beqadl3ri4gz">Keymaker SOP</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1fGCvIxPcQzil9usQeXCyS06yJIWh92ORH4Zds_ztISM/edit?tab=t.r7z287f1map1">FXblue SOP</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1Fuw8TuPq65sGdOGbM8ooTqfgyDDn5Qnx4QkCswfD3rI/edit?tab=t.0">Refund SOP</li>
+      <li class="list-item" data-link="https://docs.google.com/spreadsheets/d/1ZkUQE4XA3qpMlmUIw11nvAt8ekctwFaZ-4E7Lgsmn6c/edit?pli=1&gid=558077932#gid=558077932">Lead Assignment</li>
+      <li class="list-item" data-link="https://docs.google.com/spreadsheets/d/1IN9QL5-Z97r-FqzEP01CuIW6cFzPKfdRjmPnxqwY9aw/edit?gid=1110318478#gid=1110318478">Not Onboarded</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1acp150DUGysb9ltdCe4FwCudejTw8FqZjNaRu42hW-M/edit?tab=t.0">LLC | SOLO 401k With Brandon</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1tcXTApfF6Hf9mM5VWOvQLj_xbVfAOcLVKTsQJfV5bow/edit?tab=t.t4g09xbxkbe3">IB Links</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1tcXTApfF6Hf9mM5VWOvQLj_xbVfAOcLVKTsQJfV5bow/edit?tab=t.ygtdeqirqn01">IB Link Explanation/Objection</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1tcXTApfF6Hf9mM5VWOvQLj_xbVfAOcLVKTsQJfV5bow/edit?tab=t.8w55yogqkcm5">AGT/OX IB Link Email</li>
     </ul>
   </div>
 
@@ -327,9 +326,7 @@ In short, leverage magnifies both profits and losses. If open losses become too 
       <li class="list-item" data-description="<b>Q:</b> What is IRA, ROTH IRA, and 401k?<br><b>A:</b>
         <p><strong>Traditional IRA</strong> allows individuals to contribute pre-tax income toward investments that can grow tax-deferred until withdrawal. Withdrawals after age 59½ are taxed as ordinary income.</p>
         <p><strong>Roth IRA</strong> is designed for long-term, tax-free growth. Contributions are made with after-tax money, and gains can be tax-free when withdrawn correctly.</p>
-        <p><strong>401(k)</strong> accounts are employer-sponsored and also grow tax-deferred. When leaving a job, traders often roll their 401(k) into a Self-Directed IRA to access more investment options.</p>">
-        What is IRA, ROTH IRA, and 401k?
-      </li>
+        <p><strong>401(k)</strong> accounts are employer-sponsored and also grow tax-deferred. When leaving a job, traders often roll their 401(k) into a Self-Directed IRA to access more investment options.</p>">What is IRA, ROTH IRA, and 401k?</li>
 
       <li class="list-item" data-description="
 <b>Q:</b> What are Equity Monitors?<br>
@@ -346,8 +343,7 @@ The page has two tabs:<br>
 - Email alert<br>
 - Email alert and disable copiers<br>
 - Email alert, disable copiers and close trades">
-        Equity Monitors
-      </li>
+Equity Monitors</li>
     </ul>
   </div>
 
@@ -398,12 +394,8 @@ document.addEventListener('DOMContentLoaded', () => {
             line-height: 1.6; 
             background: #f8fafc; 
           }
-          h1 { 
-            color: #1FAE98; 
-            font-weight: 800; 
-            margin-bottom: 10px;
-          }
-          p, div { color: #334155; }
+          h1 { color: #6d28d9; font-weight: 800; }
+          p { color: #334155; }
           table { width: 100%; }
         </style>
         </head>
