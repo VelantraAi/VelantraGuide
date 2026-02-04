@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Velantra Ops Guide</title>
+
+<style>
+:root { 
+  --header-h: 84px;
+
+  /* ✅ Velantra Brand Colors */
+  --primary: #53D2B7;        /* teal */
+  --accent: #4FD18F;         /* green */
+
+  /* ✅ Neutrals */
+  --text: #0f172a;
+  --muted: #475569;
+  --card: #ffffff;
+  --bg: #f8fafc;
+  --shadow: rgba(0,0,0,0.10);
+  --border: rgba(15, 23, 42, 0.10);
+}
+
+/* ✅ Modern Sans */
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  margin: 0;
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+/* ✅ Header gradient (original branding) */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  padding: 12px 30px;
+  z-index: 9999;
+  overflow: visible;
+}
+
+/* ✅ Logo updated */
+.site-header a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.site-header a img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: 62px;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.22));
+}
+
+/* ✅ Layout: 3 columns on desktop */
+.container {
+  padding: calc(var(--header-h) + 24px) 40px 60px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* ✅ Sections */
+.section {
+  background-color: var(--card);
+  box-shadow: 0 6px 18px var(--shadow);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+
+  /* ✅ Accent border only */
+  border: 1px solid rgba(83, 210, 183, 0.25);
+}
+
+.section h2 { 
+  color: var(--text);
+  margin-bottom: 15px; 
+  letter-spacing: 0.2px;
+  font-weight: 800;
+  position: relative;
+}
+
+/* ✅ Small accent underline */
+.section h2::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 90px;
+  border-radius: 999px;
+  margin: 10px auto 0 auto;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+ul { list-style-type: none; padding: 0; margin: 0; }
+
+/* ✅ Tiles (NO color fill — accent only) */
+.list-item {
+  background: #ffffff;
+  color: var(--text);
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  font-weight: 650;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+}
+
+.list-item:hover { 
+  border-color: rgba(83, 210, 183, 0.85);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+/* ✅ Highlighted search text */
+.highlight {
+  background-color: rgba(83, 210, 183, 0.55); /* ✅ teal highlight */
+  color: #0f172a;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 6px;
+}
+
+
+/* ✅ Search bar */
+.search-container { display: flex; align-items: center; gap: 8px; }
+
+.search-container input {
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.75);
+  border-radius: 12px;
+  font-size: 14px;
+  width: 260px;
+  transition: all 0.25s ease;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  backdrop-filter: blur(12px);
+}
+
+.search-container input::placeholder {
+  color: rgba(255,255,255,0.9);
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: rgba(255,255,255,1);
+  box-shadow: 0 0 12px rgba(255,255,255,0.25);
+}
+
+/* ✅ Responsive */
+@media (max-width: 1024px) {
+  .container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .site-header { flex-direction: column; align-items: stretch; }
+  .search-container { order: 1; margin-bottom: 10px; }
+  .site-header a { order: 2; align-self: center; }
+  .site-header a img { max-height: 54px; }
+  .container { 
+    padding: calc(var(--header-h) + 16px) 20px 40px 20px; 
+    grid-template-columns: 1fr; 
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ✅ Header -->
+<header class="site-header" id="siteHeader">
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search Velantra topics..." />
+  </div>
+
+  <a href="#" onclick="return false;" aria-label="Velantra">
+    <img
+      src="https://i.postimg.cc/3w3RdVNT/Velantra-Logo.png"
+      alt="Velantra Logo"
+      id="brandLogo"
+    />
+  </a>
+</header>
+
+<div class="container" id="mainContainer">
+
+  <!-- ✅ Column 1: STT Errors -->
+  <div class="section">
+    <h2>STT Errors</h2>
+    <ul>
+      <li class="list-item" data-description="This error message means there is a disconnection between STT and the broker server. This kind of alert can be disregarded since the STT is designed to reconnect automatically.<p><b><i>Email Response</i></b></p><p>This error means that STT is currently unable to connect to the broker’s trade server. When you see “MT Error: 10031 No connection with the trade server”, it indicates that the command that STT just tried, such as opening or closing a trade, could not be processed because there’s no active connection at that moment.</p><p>The platform is designed to automatically retry the command every second. Once the connection is re-established, whether through your internet stabilizing or the broker’s server coming back online, the action will go through without any additional steps from you.</p>">
+        10031 No connection with the trade server
+      </li>
+
+      <li class="list-item" data-description="This error message means that STT was not able to copy the action from the master for closing a trade. This normally happens if the volume of the order is not suitable for the client's account.<p><b><i>Email Response</i></b></p><p>For this type of error, we can disregard it. According to our developers, this occurs when the follower account’s balance is significantly lower than the master account’s balance. In such cases, the system intelligently skips smaller positions that would otherwise result in negligible profits. These positions are typically too small to be meaningful or cost-effective once transaction costs and slippage are taken into account.</p><p>Skipping these trades helps ensure better efficiency and trading relevance on lower-balance accounts.</p>">
+        close/open volume less than minimum
+      </li>
+
+      <li class="list-item" data-description="Orders were being skipped because it's not necessary for the client's account size.<p><b><i>Email Response</i></b></p><p>You may notice that certain trades are being skipped. This happens because your account balance is significantly smaller compared to the master account. The system avoids unnecessary micro-lot orders that don’t align with your balance.</p>">
+        skipped trades
+      </li>
+
+      <li class="list-item" data-description="This happens when the live trading account gets disconnected from the STT itself which might be because of a master password update or broker server change.<p><b><i>Email Response</i></b></p><p>This behavior can sometimes occur if there is ongoing broker maintenance. When this happens, the system should automatically reconnect once the maintenance is complete.
+<p>To confirm everything is working properly, please follow these steps:</p>
+1. Log in to your STT Dashboard and go to Accounts to check if the green checkmark is visible on the left side of the ID number.
+<p>2. Then go to Trade Copiers and make sure the green play button is also showing on the right side of the copier.</p>
+<p>If both indicators are present, your account should be fully operational. If not, please book a meeting using the link below so we can assist you and resolve the issue:(CALENDAR LINK)</p>
+<p>Thank you, and feel free to reach out if you need any further help!
+</p>">
+        Account Disconnection
+      </li>
+
+      <li class="list-item" data-description="This means the trading server rejected the command to close/open the trade. Common reasons include broker-side restrictions, temporary server delays, or the trade being in a state that prevents it from closing immediately. The system automatically retries every second until it executes.">
+        10006 Request rejected
+      </li>
+
+      <li class="list-item" data-description="The price difference (slippage) between the master and follower was too large, exceeding the copier’s slippage tolerance. This protects against poor entries during fast moves; the copier retries each second until back within range.">
+        Trade is beyond copier defined slippage settings
+      </li>
+
+      <li class="list-item" data-link="https://docs.google.com/spreadsheets/d/1nwS45Ie0iIbY2CqO-KTbb-Wttz_xKER1zQRFoO4d_m8/edit?gid=0#gid=0">
+        MT4 Error Codes
+      </li>
+
+      <li class="list-item" data-link="https://docs.google.com/spreadsheets/d/19owXrMBPdsYOfRaoTmISpGHlPAZDEMIKmDp9SlFKE8c/edit?gid=0#gid=0">
+        MT5 Error Codes
+      </li>
+
+      <li class="list-item" data-description="This happens because the <i>opposite positions on a single symbol are disabled</i> rule is set for the trading account. For example, if the account has a buy position, then a user cannot open a sell position or place a pending sell order. Ther rule is only applied to acounts with hedging accounting system.<p><b><i>Email Response</i></b></p><p>Hi (client),</p>
+<p>The error you’re seeing — “opposite positions on a single symbol are disabled” — is happening because your R-S15 FIFO account is with a US-based broker (Forex.com).</p>
+<p>Here’s what it means in simple terms:</p>
+  <p>• Your account cannot hold both a buy and a sell position on the same symbol at the same time.</p>
+  <p>• For example, if there’s an open buy on EURGBP, the system cannot open a sell position until that buy is closed.</p>
+  <p>• Pending orders in the opposite direction are also blocked until existing positions are closed.</p>
+  <p>• This is a regulatory requirement for US brokers and cannot be overridden by the system.</p>
+<p>Because of this rule, the Social Trader Tool (STT) will re-attempt the command every minute, but it will only execute once the existing position is closed or reversed.</p>">
+        Error Code 10046
+      </li>
+
+      <li class="list-item" data-description="The trade didn’t open because the broker couldn’t provide a valid price at the exact moment the order was sent (Error 136: Off Quotes). This usually happens during fast market movement or low liquidity. The system will keep retrying every second, and the trade will only execute once a stable quote is available; otherwise, it may be skipped. This is not an issue with your account or the copier connection.<p><b><i>Email Response</i></b></p><p>The system successfully sent the order, however it was rejected by the broker due to Error Code 136 (Off Quotes). This means that at the moment the trade was placed, the broker could not provide a valid executable price—typically caused by rapid price movement, spread changes, or temporary liquidity conditions.</p>
+<p>What to expect:</p>
+<p>• The system will automatically retry the trade once every second.</p>
+<p>• The trade will execute as soon as a valid quote becomes available and market conditions stabilize.</p>
+<p>• If the broker continues rejecting quotes due to volatility, the trade may be skipped for that specific entry.</p>
+<p>Please note this does not indicate an issue with your account or the copier connection, and no funds were lost from this particular trade attempt.</p>
+<p>If you’d like, we can also review your execution settings (such as slippage tolerance and risk parameters) to reduce the likelihood of this occurring during high-volatility periods.</p>">
+        Error Code: 136 / Off quotes
+      </li>
+    </ul>
+  </div>
+
+  <!-- ✅ Column 2: SOPs -->
+  <div class="section">
+    <h2>Standard Operating Procedures (SOPs)</h2>
+    <ul>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1ksMvSix4IZhVyyE8UzLMc4L0HINxFkh3B8KXpMO99vE/edit?tab=t.af90p48y2t8c">Onboarding Process & SOP</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1bjSvt-qcJOcpELEnHNSRmBt-lChtGgR8a5huRDpjU00/edit?tab=t.0">Handling Client Inquiries - Onboarding Responsibilities</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1rKLjgj_bq0zh1b8bCQMlTlMaSfY85bcDuQ1_gZg_zeY/edit?usp=sharing">Onboarding to Sales Pass Off</li>
+      <li class="list-item" data-link="https://app.velantra.ai/dashboard/login">KeyMaker Login Screen</li>
+      <li class="list-item" data-link="https://www.loom.com/share/dbc6054304d54e1aac219441499fafba">How to Set Up Client on KeyMaker</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/15tWAlbdDhmegggCTRLQStXETTCfOmyTRQuW-kvatXUE/edit?tab=t.0">Product/System Descriptions</li>
+      <li class="list-item" data-link="https://drive.google.com/file/d/15E74VyH4DWV6R_nS_QzT7kVtojZxm_jY/view?usp=sharing">Alpha Performance Verification</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1L4nZhvwGSE6VcUzFFWMEhylC6F_4c_ycxgZ7Y0qWh-g/edit?usp=sharing">Velantra White Papers</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1UFOPshmZO31Vuts6A725hb_Om5lfbUbcHhWIQdOkkIg/edit?usp=sharing">Published Article on Velantra</li>
+      <li class="list-item" data-link="https://drive.google.com/drive/folders/1pM2uMRZGJFD4KaWm_M8n6hHDfhc-RauA?usp=drive_link">GNT Specific Documents</li>
+    </ul>
+  </div>
+
+  <!-- ✅ Column 3: FAQs -->
+  <div class="section">
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <ul>
+      <li class="list-item" data-description="<b>Q:</b> What is STT?<br><b>A:</b> STT (Social Trader Tool) is a trade-copying platform that connects master and follower accounts to automatically mirror trades. It allows users to follow expert strategies without manually trading.">What is STT?</li>
+      <li class="list-item" data-description="<b>Q:</b> How does STT work?<br><b>A:</b> STT uses API connections between brokers and accounts. When the master opens or closes a trade, the same action is copied to follower accounts instantly and proportionally.">How does STT work?</li>
+      <li class="list-item" data-description="<b>Q:</b> How do I stop copying trades?<br><b>A:</b> Go to Configurator → Trade Copiers → Green Play Button → Stop Copying New Trades. This stops new trades while existing ones remain managed by the system.">How to stop copying trades?</li>
+      <li class="list-item" data-description="<b>Q:</b> Does STT guarantee profits?<br><b>A:</b> No. STT only automates trade copying. Profitability depends on the master strategy’s performance and market conditions.">Does STT guarantee profits?</li>
+      <li class="list-item" data-description="<b>Q:</b> How can I check if STT is connected?<br><b>A:</b> Log in to your STT dashboard. A green icon under ‘Accounts’ indicates a live connection. Red or gray means disconnected.">How do I check if STT is connected?</li>
+      <li class="list-item" data-description="<b>Q:</b> What happens during broker maintenance?<br><b>A:</b> Temporary disconnections may occur during broker maintenance. STT automatically restores connection once servers are back online.">What happens during broker maintenance?</li>
+      <li class="list-item" data-description="<b>Q:</b> Can I connect multiple brokers?<br><b>A:</b> Yes. STT supports connecting multiple MT4/MT5 brokers as long as they allow API access.">Can I connect multiple brokers?</li>
+      <li class="list-item" data-description="<b>Q:</b> Is STT safe when it comes to account security?<br><b>A:</b> We store MT4/5 credentials encrypted, accessible only through your Social Trader Tools account. Access to servers is SSH-key restricted; support may log in only when you request assistance.">Is STT safe when it comes to account security?</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+function syncHeaderOffset() {
+  const header = document.getElementById('siteHeader');
+  if (!header) return;
+  const h = header.offsetHeight;
+  document.documentElement.style.setProperty('--header-h', h + 'px');
+}
+
+window.addEventListener('load', syncHeaderOffset);
+window.addEventListener('resize', syncHeaderOffset);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.getElementById('brandLogo');
+  if (logo) {
+    if (logo.complete) syncHeaderOffset();
+    else logo.addEventListener('load', syncHeaderOffset);
+  }
+
+  document.querySelectorAll('.list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const link = item.getAttribute('data-link');
+      const description = item.getAttribute('data-description');
+      const title = item.textContent.trim();
+
+      if (link) {
+        window.open(link, '_blank');
+      } else if (description) {
+        const popup = `
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>${title}</title>
+        <style>
+          body { 
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+            color: #0f172a; 
+            padding: 30px; 
+            line-height: 1.6; 
+            background: #f8fafc; 
+          }
+          h1 { 
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #53D2B7, #4FD18F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          p, div { color: #334155; }
+          table { width: 100%; }
+        </style>
+        </head>
+        <body>
+          <h1>${title}</h1>
+          <div>${description}</div>
+        </body>
+        </html>`;
+        const tab = window.open('', '_blank');
+        tab.document.write(popup);
+        tab.document.close();
+      }
+    });
+  });
+
+  const searchInput = document.getElementById('searchInput');
+  const listItems = document.querySelectorAll('.list-item');
+
+  searchInput.addEventListener('input', () => {
+    const filter = searchInput.value.toLowerCase();
+
+    listItems.forEach(item => {
+      const text = item.textContent;
+      const lower = text.toLowerCase();
+
+      if (lower.includes(filter)) {
+        item.style.display = "";
+        if (filter) {
+          const regex = new RegExp(`(${filter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+          item.innerHTML = text.replace(regex, "<span class='highlight'>$1</span>");
+        } else {
+          item.innerHTML = text;
+        }
+      } else {
+        item.style.display = "none";
+        item.innerHTML = text;
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
