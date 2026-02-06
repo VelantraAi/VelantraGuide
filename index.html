@@ -9,196 +9,189 @@
 :root { 
   --header-h: 84px;
 
-  /* ✅ Velantra Brand Colors */
-  --primary: #53D2B7;        /* teal */
-  --accent: #4FD18F;         /* green */
+  /* Velantra colors */
+  --primary: #53D2B7;
+  --accent: #4FD18F;
 
-  /* ✅ Neutrals */
+  /* neutrals */
   --text: #0f172a;
-  --muted: #475569;
   --card: #ffffff;
   --bg: #f8fafc;
+  --border: rgba(15,23,42,0.12);
   --shadow: rgba(0,0,0,0.10);
-  --border: rgba(15, 23, 42, 0.10);
 }
 
-/* ✅ Modern Sans */
 body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
   color: var(--text);
   margin: 0;
   background-color: var(--bg);
-  min-height: 100vh;
 }
 
-/* ✅ Header gradient (original branding) */
+/* HEADER */
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  background: linear-gradient(90deg,var(--primary),var(--accent));
   padding: 12px 30px;
   z-index: 9999;
-  overflow: visible;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
 }
 
-/* ✅ Logo updated */
-.site-header a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+.site-header img {
+  max-height: 58px;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.25));
 }
 
-.site-header a img {
-  display: block;
-  height: auto;
-  width: auto;
-  max-height: 62px;
-  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.22));
+/* SEARCH */
+.search-container input{
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.8);
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  backdrop-filter: blur(10px);
+  width:260px;
+}
+.search-container input::placeholder{color:#fff}
+
+/* GRID (4 columns) */
+.container{
+  padding:calc(var(--header-h)+24px) 40px 60px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(260px,1fr));
+  gap:26px;
 }
 
-/* ✅ Layout: 3 columns on desktop */
-.container {
-  padding: calc(var(--header-h) + 24px) 40px 60px 40px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
-  gap: 30px;
+/* CARDS */
+.section{
+  background:var(--card);
+  border-radius:16px;
+  padding:25px;
+  text-align:center;
+  border:1px solid rgba(83,210,183,.25);
+  box-shadow:0 6px 18px var(--shadow);
 }
 
-/* ✅ Sections */
-.section {
-  background-color: var(--card);
-  box-shadow: 0 6px 18px var(--shadow);
-  border-radius: 16px;
-  padding: 25px;
-  text-align: center;
-
-  /* ✅ Accent border only */
-  border: 1px solid rgba(83, 210, 183, 0.25);
+.section h2{
+  font-weight:800;
+  margin-bottom:16px;
+  position:relative;
 }
 
-.section h2 { 
-  color: var(--text);
-  margin-bottom: 15px; 
-  letter-spacing: 0.2px;
-  font-weight: 800;
-  position: relative;
+.section h2::after{
+  content:"";
+  display:block;
+  width:90px;
+  height:3px;
+  border-radius:99px;
+  margin:10px auto 0;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
 }
 
-/* ✅ Small accent underline */
-.section h2::after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 90px;
-  border-radius: 999px;
-  margin: 10px auto 0 auto;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+/* LIST ITEMS */
+.list-item{
+  background:#fff;
+  border:1px solid var(--border);
+  padding:12px;
+  margin:12px 0;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.2s;
+  font-weight:600;
 }
 
-ul { list-style-type: none; padding: 0; margin: 0; }
-
-/* ✅ Tiles (NO color fill — accent only) */
-.list-item {
-  background: #ffffff;
-  color: var(--text);
-  margin: 12px 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  border: 1px solid rgba(15, 23, 42, 0.10);
-  font-weight: 650;
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+.list-item:hover{
+  border-color:var(--primary);
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.1);
 }
 
-.list-item:hover { 
-  border-color: rgba(83, 210, 183, 0.85);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-  transform: translateY(-2px);
+/* SEARCH HIGHLIGHT */
+.highlight{
+  background:rgba(83,210,183,.55);
+  padding:2px 5px;
+  border-radius:6px;
+  font-weight:800;
 }
 
-/* ✅ Highlighted search text */
-.highlight {
-  background-color: rgba(83, 210, 183, 0.55); /* ✅ teal highlight */
-  color: #0f172a;
-  font-weight: 800;
-  padding: 2px 5px;
-  border-radius: 6px;
-}
-
-
-/* ✅ Search bar */
-.search-container { display: flex; align-items: center; gap: 8px; }
-
-.search-container input {
-  padding: 10px 14px;
-  border: 1px solid rgba(255,255,255,0.75);
-  border-radius: 12px;
-  font-size: 14px;
-  width: 260px;
-  transition: all 0.25s ease;
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-  backdrop-filter: blur(12px);
-}
-
-.search-container input::placeholder {
-  color: rgba(255,255,255,0.9);
-}
-
-.search-container input:focus {
-  outline: none;
-  border-color: rgba(255,255,255,1);
-  box-shadow: 0 0 12px rgba(255,255,255,0.25);
-}
-
-/* ✅ Responsive */
-@media (max-width: 1024px) {
-  .container { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 700px) {
-  .site-header { flex-direction: column; align-items: stretch; }
-  .search-container { order: 1; margin-bottom: 10px; }
-  .site-header a { order: 2; align-self: center; }
-  .site-header a img { max-height: 54px; }
-  .container { 
-    padding: calc(var(--header-h) + 16px) 20px 40px 20px; 
-    grid-template-columns: 1fr; 
-  }
-}
+/* RESPONSIVE */
+@media(max-width:1400px){.container{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1024px){.container{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.container{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
 
-<!-- ✅ Header -->
 <header class="site-header" id="siteHeader">
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search Velantra topics..." />
+    <input type="text" id="searchInput" placeholder="Search Velantra topics...">
   </div>
 
-  <a href="#" onclick="return false;" aria-label="Velantra">
-    <img
-      src="https://i.postimg.cc/3w3RdVNT/Velantra-Logo.png"
-      alt="Velantra Logo"
-      id="brandLogo"
-    />
-  </a>
+  <img src="https://i.postimg.cc/3w3RdVNT/Velantra-Logo.png" alt="Velantra">
 </header>
 
-<div class="container" id="mainContainer">
+<div class="container">
 
-  <!-- ✅ Column 1: STT Errors -->
-  <div class="section">
-    <h2>STT Errors</h2>
-    <ul>
+<!-- Example section (keep duplicating your existing ones below exactly same structure) -->
+
+<div class="section">
+<h2>FAQs</h2>
+<ul>
+<li class="list-item" data-description="The mention of a 1.5% fee is simply part of the standard template agreement generated by GNT’s payment service providers/banking partners. These are fees to facilitate secure wire transfers.<p></p><p>However, GNT does not charge any fees on deposits made via bank wire.</p><p>GNT’s Document as Confirmation (link here)</p>">
+What is the 1.5% fee noted on the Bank Service Agreement?
+</li>
+
+<li class="list-item" data-description="An additional performance fee was processed on November 25th but was corrected by GNT.<p></p><p>They calculated the total performance fee due as of November 30th.</p><p>They subtracted the amount that was incorrectly processed on November 25th.</p><p>They only transacted the difference between these two figures.</p><p>Email copy for clients linked here.</p>">
+Why do I see an extra performance fee on November 25th?
+</li>
+
+<li class="list-item" data-description="Yes — please send an email to compliance@gntcapital.com.<p></p><p>GNT will provide instructions on how to designate beneficiaries for the account.</p>">
+Can I add a beneficiary on my account?
+</li>
+
+<li class="list-item" data-description="Debiti is Global Next Trade’s banking partner. They are the entity that creates the Bank Service Agreement, which is the legal contract between you (the client) and the payment provider (Debiti).<p></p><p>It tells the global banking system that you are authorized to send/receive these funds and verifies the source of money.</p><p>This is important for regulatory compliance and anti-money laundering laws.</p><p>Example of GNT BSA (as of Dec 22/2025) — link here</p>">
+Who is Debiti on the Bank Service Agreement?
+</li>
+
+<li class="list-item" data-description="We actually see this quite often — it’s a standard friction point when moving capital into a new investment environment.<p></p><p>Banks have strict protocols to keep deposits in-house. When they see a large sum leaving for a brokerage or investment account, it triggers an automatic safety flag. This is about bank procedure, not the safety of the destination.</p><p>Once the path is established, transfers usually become seamless.</p><p><b>Recommended solutions:</b></p><p>• Bridge Transfer — start with a smaller amount to establish trust.</p><p>• In-Person Authorization — visiting a branch usually clears the block instantly. This is your money.</p><p>Most clients do this for the first deposit; future transfers are much faster.</p>">
+My bank is saying the transaction is suspicious or unsafe
+</li>
+
+<li class="list-item" data-description="Myfxbook requires verification to make an account public when created on behalf of a client.<p></p><p>This requires changing investor passwords and completing a multi-step verification process with the client.</p><p>If the client prefers Myfxbook, we can deactivate our version and walk them through setting it up personally.</p><p>Steps are linked here.</p>">
+Why is my client’s myfxbook link showing a 404 error?
+</li>
+
+<li class="list-item" data-description="Negative Balance Compensation is an internal adjustment when an account falls below zero after losses exceed both funds and credit.<p></p><p><b>Triggers:</b></p><p>• Equity reaches zero</p><p>• Market moves against open trades</p><p>• Losses exceed deposited funds and credit</p><p>Example: account balance becomes -$150</p><p><b>System action:</b></p><p>• Removes used credit</p><p>• Clears negative balance</p><p>• Resets account to $0.00</p><p>• Prevents the client from owing money</p><p><b>Why credit is removed:</b></p><p>Trading credit is not withdrawable cash. Once consumed by losses, it no longer exists — the adjustment simply finalizes the loss.</p>">
+What does “Negative Balance Compensation” mean?
+</li>
+
+
+</ul>
+</div>
+
+<div class="section">
+<h2>STT and STT Errors</h2>
+<ul>
+
+<li class="list-item" data-description="<b>Q:</b> What is STT?<br><b>A:</b> STT (Social Trader Tool) is a trade-copying platform that connects master and follower accounts to automatically mirror trades. It allows users to follow expert strategies without manually trading.">What is STT?</li>
+
+<li class="list-item" data-description="<b>Q:</b> How does STT work?<br><b>A:</b> STT uses API connections between brokers and accounts. When the master opens or closes a trade, the same action is copied to follower accounts instantly and proportionally.">How does STT work?</li>
+
+<li class="list-item" data-description="<b>Q:</b> How do I stop copying trades?<br><b>A:</b> Go to Configurator → Trade Copiers → Green Play Button → Stop Copying New Trades. This stops new trades while existing ones remain managed by the system.">How to stop copying trades?</li>
+
+<li class="list-item" data-description="<b>Q:</b> Does STT guarantee profits?<br><b>A:</b> No. STT only automates trade copying. Profitability depends on the master strategy’s performance and market conditions.">Does STT guarantee profits?</li>
+
+<li class="list-item" data-description="<b>Q:</b> How can I check if STT is connected?<br><b>A:</b> Log in to your STT dashboard. A green icon under ‘Accounts’ indicates a live connection. Red or gray means disconnected.">How do I check if STT is connected?</li>
+
+<li class="list-item" data-description="<b>Q:</b> Can I connect multiple brokers?<br><b>A:</b> Yes. STT supports connecting multiple MT4/MT5 brokers as long as they allow API access.">Can I connect multiple brokers?</li>
+
+<li class="list-item" data-description="<b>Q:</b> Is STT safe when it comes to account security?<br><b>A:</b> We store MT4/5 credentials encrypted, accessible only through your Social Trader Tools account. Access to servers is SSH-key restricted; support may log in only when you request assistance.">Is STT safe when it comes to account security?</li>
+
       <li class="list-item" data-description="This error message means there is a disconnection between STT and the broker server. This kind of alert can be disregarded since the STT is designed to reconnect automatically.<p><b><i>Email Response</i></b></p><p>This error means that STT is currently unable to connect to the broker’s trade server. When you see “MT Error: 10031 No connection with the trade server”, it indicates that the command that STT just tried, such as opening or closing a trade, could not be processed because there’s no active connection at that moment.</p><p>The platform is designed to automatically retry the command every second. Once the connection is re-established, whether through your internet stabilizing or the broker’s server coming back online, the action will go through without any additional steps from you.</p>">
         10031 No connection with the trade server
       </li>
@@ -257,13 +250,30 @@ ul { list-style-type: none; padding: 0; margin: 0; }
 <p>If you’d like, we can also review your execution settings (such as slippage tolerance and risk parameters) to reduce the likelihood of this occurring during high-volatility periods.</p>">
         Error Code: 136 / Off quotes
       </li>
-    </ul>
-  </div>
 
-  <!-- ✅ Column 2: SOPs -->
-  <div class="section">
-    <h2>Standard Operating Procedures (SOPs)</h2>
-    <ul>
+</ul>
+</div>
+
+
+<div class="section">
+<h2>Product Descriptions</h2>
+<ul>
+<li class="list-item" data-description="DESCRIPTION">
+Maven
+</li>
+<li class="list-item" data-description="DESCRIPTION">
+Titan
+</li>
+<li class="list-item" data-description="DESCRIPTION">
+Imperium
+</li>
+<li class="list-item" data-description="DESCRIPTION">
+Maximus
+</li>
+</ul>
+
+<h2>SOPs</h2>
+<ul>
       <li class="list-item" data-link="https://docs.google.com/document/d/1ksMvSix4IZhVyyE8UzLMc4L0HINxFkh3B8KXpMO99vE/edit?tab=t.af90p48y2t8c">Onboarding Process & SOP</li>
       <li class="list-item" data-link="https://docs.google.com/document/d/1bjSvt-qcJOcpELEnHNSRmBt-lChtGgR8a5huRDpjU00/edit?tab=t.0">Handling Client Inquiries - Onboarding Responsibilities</li>
       <li class="list-item" data-link="https://docs.google.com/document/d/1rKLjgj_bq0zh1b8bCQMlTlMaSfY85bcDuQ1_gZg_zeY/edit?usp=sharing">Onboarding to Sales Pass Off</li>
@@ -273,116 +283,64 @@ ul { list-style-type: none; padding: 0; margin: 0; }
       <li class="list-item" data-link="https://drive.google.com/file/d/15E74VyH4DWV6R_nS_QzT7kVtojZxm_jY/view?usp=sharing">Alpha Performance Verification</li>
       <li class="list-item" data-link="https://docs.google.com/document/d/1L4nZhvwGSE6VcUzFFWMEhylC6F_4c_ycxgZ7Y0qWh-g/edit?usp=sharing">Velantra White Papers</li>
       <li class="list-item" data-link="https://docs.google.com/document/d/1UFOPshmZO31Vuts6A725hb_Om5lfbUbcHhWIQdOkkIg/edit?usp=sharing">Published Article on Velantra</li>
-      <li class="list-item" data-link="https://drive.google.com/drive/folders/1pM2uMRZGJFD4KaWm_M8n6hHDfhc-RauA?usp=drive_link">GNT Specific Documents</li>
-    </ul>
-  </div>
+</ul>
 
-  <!-- ✅ Column 3: FAQs -->
-  <div class="section">
-    <h2>Frequently Asked Questions (FAQs)</h2>
-    <ul>
-      <li class="list-item" data-description="<b>Q:</b> What is STT?<br><b>A:</b> STT (Social Trader Tool) is a trade-copying platform that connects master and follower accounts to automatically mirror trades. It allows users to follow expert strategies without manually trading.">What is STT?</li>
-      <li class="list-item" data-description="<b>Q:</b> How does STT work?<br><b>A:</b> STT uses API connections between brokers and accounts. When the master opens or closes a trade, the same action is copied to follower accounts instantly and proportionally.">How does STT work?</li>
-      <li class="list-item" data-description="<b>Q:</b> How do I stop copying trades?<br><b>A:</b> Go to Configurator → Trade Copiers → Green Play Button → Stop Copying New Trades. This stops new trades while existing ones remain managed by the system.">How to stop copying trades?</li>
-      <li class="list-item" data-description="<b>Q:</b> Does STT guarantee profits?<br><b>A:</b> No. STT only automates trade copying. Profitability depends on the master strategy’s performance and market conditions.">Does STT guarantee profits?</li>
-      <li class="list-item" data-description="<b>Q:</b> How can I check if STT is connected?<br><b>A:</b> Log in to your STT dashboard. A green icon under ‘Accounts’ indicates a live connection. Red or gray means disconnected.">How do I check if STT is connected?</li>
-      <li class="list-item" data-description="<b>Q:</b> What happens during broker maintenance?<br><b>A:</b> Temporary disconnections may occur during broker maintenance. STT automatically restores connection once servers are back online.">What happens during broker maintenance?</li>
-      <li class="list-item" data-description="<b>Q:</b> Can I connect multiple brokers?<br><b>A:</b> Yes. STT supports connecting multiple MT4/MT5 brokers as long as they allow API access.">Can I connect multiple brokers?</li>
-      <li class="list-item" data-description="<b>Q:</b> Is STT safe when it comes to account security?<br><b>A:</b> We store MT4/5 credentials encrypted, accessible only through your Social Trader Tools account. Access to servers is SSH-key restricted; support may log in only when you request assistance.">Is STT safe when it comes to account security?</li>
-    </ul>
-  </div>
+<h2>Leadership Essentials (for Leadership ONLY)</h2>
+<ul>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1fMm2ZAbow4XT6e9ikGQQa3kf4alc9Nafe8FJKOcmzfQ/edit?usp=sharing">Call Recordings</li>
+      <li class="list-item" data-link="https://docs.google.com/spreadsheets/d/1B5PwNUaXGgitFRW1d2WaT-oA8iMIKH13qIGrTkvMlbQ/edit?usp=sharing">Offer Links</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1hXfzpxSCVkrvteXWOFLoE68p73iesIXJ3Gy_odFW088/edit?usp=sharing">Offer Link Set Up - How To</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/10_O4GI3TDLmj6cm6ny2jfYQi50KoADX1RvabNYVmch4/edit?usp=sharing">Offer Link Change When Client Is Live & Trading - How To</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/10__lCxrtKTErAJzZvMfAwHh86n6hzM_UWFdiL3zEo90/edit?usp=sharing">"MyFXBooks & FXBlue: Company Account Login & SOP (for client accounts only)"</li>
+      <li class="list-item" data-link="https://docs.google.com/document/d/1UV3rMQy27IyxcuRe_zkygP80K-5JmElwF_rF_LCvT9A/edit?usp=sharing">On Field Schedules</li>
+      <li class="list-item" data-link="https://drive.google.com/drive/folders/1hNXnrGaFUIn7MU9EXtAKlRPeCkUH8zL-?usp=sharing">Automated Onboarding Process (WIP)</li>
+
+</ul>
+</div>
+
+<div class="section">
+<h2>GNT Documents</h2>
+<ul>
+<li class="list-item" data-link="https://drive.google.com/file/d/1nnJJISa5IFnRUsZ9qi-paGl3eckG_Bpq/view?usp=drive_link">US Person</li>
+<li class="list-item" data-link="https://drive.google.com/file/d/1GwcbQckOBMEMv1QhClDL9PO-c-BEHaRu/view?usp=drive_link">Individual Self Certification Form</li>
+<li class="list-item" data-link="https://drive.google.com/file/d/1OGJR0u_rBnx5mUFJq9dKQLDR0gY9ByR5/view?usp=drive_link">GNT BSA Example</li>
+<li class="list-item" data-link="https://drive.google.com/file/d/1OFs9WnLwKTYSqV4wJ7uYtOAy9BJtKObl/view?usp=drive_link">GNT T&C (upon registering to GNT)</li>
+<li class="list-item" data-link="https://drive.google.com/file/d/10c18_5WVn-sngpY5qjPR2RcIGKDm-P6e/view?usp=drive_link">Individual Client Agreement (upon KYC/KYB)</li>
+</ul>
+</div>
 
 </div>
 
 <script>
-function syncHeaderOffset() {
-  const header = document.getElementById('siteHeader');
-  if (!header) return;
-  const h = header.offsetHeight;
-  document.documentElement.style.setProperty('--header-h', h + 'px');
+function syncHeaderOffset(){
+  document.documentElement.style.setProperty('--header-h',
+    document.getElementById('siteHeader').offsetHeight+'px');
 }
+window.addEventListener('load',syncHeaderOffset);
+window.addEventListener('resize',syncHeaderOffset);
 
-window.addEventListener('load', syncHeaderOffset);
-window.addEventListener('resize', syncHeaderOffset);
-
-document.addEventListener('DOMContentLoaded', () => {
-  const logo = document.getElementById('brandLogo');
-  if (logo) {
-    if (logo.complete) syncHeaderOffset();
-    else logo.addEventListener('load', syncHeaderOffset);
+document.querySelectorAll('.list-item').forEach(item=>{
+  item.onclick=()=>{
+    const link=item.dataset.link;
+    const desc=item.dataset.description;
+    if(link) window.open(link,'_blank');
+    else if(desc){
+      const w=window.open('','_blank');
+      w.document.write(`<h1>${item.innerText}</h1><p>${desc}</p>`);
+    }
   }
+});
 
-  document.querySelectorAll('.list-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const link = item.getAttribute('data-link');
-      const description = item.getAttribute('data-description');
-      const title = item.textContent.trim();
-
-      if (link) {
-        window.open(link, '_blank');
-      } else if (description) {
-        const popup = `
-        <!DOCTYPE html>
-        <html lang='en'>
-        <head>
-        <meta charset='UTF-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>${title}</title>
-        <style>
-          body { 
-            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-            color: #0f172a; 
-            padding: 30px; 
-            line-height: 1.6; 
-            background: #f8fafc; 
-          }
-          h1 { 
-            font-weight: 900;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #53D2B7, #4FD18F);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-          }
-          p, div { color: #334155; }
-          table { width: 100%; }
-        </style>
-        </head>
-        <body>
-          <h1>${title}</h1>
-          <div>${description}</div>
-        </body>
-        </html>`;
-        const tab = window.open('', '_blank');
-        tab.document.write(popup);
-        tab.document.close();
-      }
-    });
-  });
-
-  const searchInput = document.getElementById('searchInput');
-  const listItems = document.querySelectorAll('.list-item');
-
-  searchInput.addEventListener('input', () => {
-    const filter = searchInput.value.toLowerCase();
-
-    listItems.forEach(item => {
-      const text = item.textContent;
-      const lower = text.toLowerCase();
-
-      if (lower.includes(filter)) {
-        item.style.display = "";
-        if (filter) {
-          const regex = new RegExp(`(${filter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-          item.innerHTML = text.replace(regex, "<span class='highlight'>$1</span>");
-        } else {
-          item.innerHTML = text;
-        }
-      } else {
-        item.style.display = "none";
-        item.innerHTML = text;
-      }
-    });
-  });
+const search=document.getElementById('searchInput');
+search.addEventListener('input',()=>{
+ const val=search.value.toLowerCase();
+ document.querySelectorAll('.list-item').forEach(el=>{
+   const txt=el.innerText.toLowerCase();
+   if(txt.includes(val)){
+     el.style.display='';
+     el.innerHTML=el.innerText.replace(new RegExp(val,'gi'),m=>`<span class="highlight">${m}</span>`);
+   } else el.style.display='none';
+ });
 });
 </script>
 
